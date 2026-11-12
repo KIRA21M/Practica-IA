@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: Tests and checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Check syntax
+        run: npm run check
+
+      - name: Audit dependencies
+        run: npm audit --omit=dev
+
+  generative-comparison:
+    name: Generative comparison
+    needs: tests
+    runs-on: ubuntu-latest
+    env:
+      AI_PROVIDER: anthropic
+      ANTHROPIC_API_KEY: ${{ secrets.API }}
+      ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL || 'claude-sonnet-4-5-20250929' }}
+      ANTHROPIC_BASE_URL: ${{ vars.ANTHROPIC_BASE_URL || 'https://api.anthropic.com/v1' }}
+      GENERATION_TIMEOUT_MS: 20000
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run comparison
+        if: ${{ env.ANTHROPIC_API_KEY != '' }}
+        run: |
+          mkdir -p artifacts
+          node src/evaluation/compare.js > artifacts/comparison-results.json
+
+      - name: Upload comparison results
+        if: ${{ env.ANTHROPIC_API_KEY != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: comparison-results
+          path: artifacts/comparison-results.json
+
+      - name: Explain skipped comparison
+        if: ${{ env.ANTHROPIC_API_KEY == '' }}
+        run: echo "ANTHROPIC_API_KEY no está configurada; se omitió la comparación generativa."

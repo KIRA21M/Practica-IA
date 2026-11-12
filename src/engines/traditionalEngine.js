@@ -1,13 +1,13 @@
 const RULES = [
-  { category: 'SECURITY', terms: ['vulnerabilidad', 'phishing', 'malware', 'hack', 'brecha', 'expuesto', 'robo de datos', 'credenciales'] },
+  { category: 'SECURITY', terms: ['vulnerabilidad', 'phishing', 'malware', 'hack', 'brecha', 'expuesto', 'robo de datos', 'robo de credenciales', 'credenciales expuestas', 'credenciales comprometidas'] },
   { category: 'ACCESS', terms: ['iniciar sesión', 'iniciar sesion', 'contraseña', 'contrasena', 'login', 'acceso', 'bloqueada', 'bloqueado', 'autenticación', 'autenticacion'] },
   { category: 'BUG', terms: ['error', 'falla', 'fallo', 'bug', 'crash', 'no funciona', 'incorrecto', 'pantalla blanca'] },
-  { category: 'FEATURE', terms: ['funcionalidad', 'característica', 'caracteristica', 'agregar', 'añadir', 'integración', 'integracion', 'solicito', 'permitir'] }
+  { category: 'FEATURE', terms: ['funcionalidad', 'característica', 'caracteristica', 'agregar', 'añadir', 'integración', 'integracion', 'solicito', 'permitir', 'sugerencia', 'modo oscuro'] }
 ];
 
 const PRIORITY_TERMS = {
-  CRITICAL: ['crítico', 'critico', 'urgente', 'caído', 'caido', 'brecha', 'robo de datos', 'producción detenida'],
-  HIGH: ['no puedo', 'bloqueado', 'bloqueada', 'pérdida', 'perdida', 'seguridad', 'vulnerabilidad'],
+  CRITICAL: ['crítico', 'critico', 'urgente', 'caído', 'caido', 'brecha', 'robo de datos', 'producción detenida', 'token expuesto'],
+  HIGH: ['no puedo', 'bloqueado', 'bloqueada', 'pérdida', 'perdida', 'seguridad', 'vulnerabilidad', 'phishing', 'malware'],
   MEDIUM: ['error', 'falla', 'problema', 'inconveniente'],
   LOW: ['sugerencia', 'mejorar', 'consulta', 'idea']
 };
