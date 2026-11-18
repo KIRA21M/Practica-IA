@@ -32,7 +32,7 @@ export async function analyzeGenerative(message) {
     const baseUrl = isAnthropic ? config.anthropicBaseUrl : isOllama ? config.ollamaBaseUrl : config.openAiBaseUrl;
     const providerName = isAnthropic ? 'Anthropic' : isOllama ? 'Ollama' : 'OpenAI';
     const response = await fetch(
-      isAnthropic ? `${baseUrl}/messages` : `${baseUrl}/chat/completions`,
+      isAnthropic ? `${baseUrl}/messages` : isOllama ? `${baseUrl.replace(/\/v1\/?$/, '')}/api/chat` : `${baseUrl}/chat/completions`,
       {
         method: 'POST',
         signal: controller.signal,
@@ -41,7 +41,9 @@ export async function analyzeGenerative(message) {
           : { ...(apiKey ? { Authorization: `Bearer ${apiKey}` } : {}), 'Content-Type': 'application/json' },
         body: JSON.stringify(isAnthropic
           ? { model: config.anthropicModel, max_tokens: 512, temperature: 0, system: SYSTEM_PROMPT, messages: [{ role: 'user', content: message }] }
-          : { model: isOllama ? config.ollamaModel : config.openAiModel, temperature: 0, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: SYSTEM_PROMPT }, { role: 'user', content: message }] })
+          : isOllama
+            ? { model: config.ollamaModel, stream: false, format: 'json', options: { temperature: 0 }, messages: [{ role: 'system', content: SYSTEM_PROMPT }, { role: 'user', content: message }] }
+            : { model: config.openAiModel, temperature: 0, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: SYSTEM_PROMPT }, { role: 'user', content: message }] })
       }
     );
     if (!response.ok) {
@@ -59,8 +61,20 @@ export async function analyzeGenerative(message) {
       throw error;
     }
     const payload = await response.json();
-    const content = isAnthropic ? payload.content?.find((block) => block.type === 'text')?.text : payload.choices?.[0]?.message?.content;
-    const result = JSON.parse(content);
+    const content = isAnthropic
+      ? payload.content?.find((block) => block.type === 'text')?.text
+      : isOllama
+        ? payload.message?.content
+        : payload.choices?.[0]?.message?.content;
+    const parsed = JSON.parse(content);
+    const normalizedCategory = typeof parsed.category === 'string' ? parsed.category.trim().toUpperCase() : parsed.category;
+    const normalizedPriority = typeof parsed.priority === 'string' ? parsed.priority.trim().toUpperCase() : parsed.priority;
+    const result = {
+      ...parsed,
+      category: normalizedCategory,
+      priority: normalizedPriority,
+      requiresHumanReview: requiresHumanReview(normalizedCategory)
+    };
     if (!isSupportAnalysis(result) || !CATEGORIES.includes(result.category) || !PRIORITIES.includes(result.priority)) {
       const error = new Error('La respuesta generativa no cumple el contrato esperado.');
       error.statusCode = 502;
