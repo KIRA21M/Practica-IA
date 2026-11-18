@@ -4,3 +4,5 @@ coverage/
 *.log
 work/
 outputs/
+ml-service/.venv/
+__pycache__/

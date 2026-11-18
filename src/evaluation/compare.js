@@ -45,7 +45,22 @@ async function run() {
     }
   } else {
     const variable = config.aiProvider === 'anthropic' ? 'ANTHROPIC_API_KEY' : 'OPENAI_API_KEY';
+    if (process.env.REQUIRE_GENERATIVE === 'true') {
+      throw new Error(`${variable} no configurada; no se puede completar la comparación generativa.`);
+    }
     generative.push(...referenceCases.map((expected) => ({ ...expected, status: 'skipped', error: `${variable} no configurada` })));
+  }
+
+  const generativeSummary = summarize(generative);
+  if (process.env.REQUIRE_GENERATIVE === 'true' && generativeSummary.completed !== referenceCases.length) {
+    const firstError = generative.find((result) => result.status === 'error')?.error || 'sin detalle';
+    console.log(JSON.stringify({
+      generatedAt: new Date().toISOString(),
+      referenceCount: referenceCases.length,
+      traditional: { summary: summarize(traditional), cases: traditional },
+      generative: { summary: generativeSummary, cases: generative }
+    }, null, 2));
+    throw new Error(`La comparación generativa quedó incompleta: ${generativeSummary.completed}/${referenceCases.length} casos completados. Primer error: ${firstError}`);
   }
 
   console.log(JSON.stringify({

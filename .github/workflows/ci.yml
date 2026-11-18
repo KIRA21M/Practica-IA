@@ -36,8 +36,35 @@ jobs:
       - name: Audit dependencies
         run: npm audit --omit=dev
 
+  ml-service:
+    name: ML service
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ml-service
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Python dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Validate training and prediction
+        run: |
+          python -m py_compile app.py
+          python -c "from app import data, model; assert len(data) == 200; assert model.predict(['Alguien entró a mi cuenta sin autorización'])[0] == 'SECURITY'"
+
   generative-comparison:
     name: Generative comparison
+    # Repository secrets are unavailable to pull requests from forks. Keep
+    # the generative gate strict for internal branches while allowing tests
+    # from external contributors to run without exposing the API key.
+    if: ${{ vars.RUN_CLOUD_COMPARISON == 'true' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
     needs: tests
     runs-on: ubuntu-latest
     env:
@@ -46,6 +73,7 @@ jobs:
       ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL || 'claude-sonnet-4-5-20250929' }}
       ANTHROPIC_BASE_URL: ${{ vars.ANTHROPIC_BASE_URL || 'https://api.anthropic.com/v1' }}
       GENERATION_TIMEOUT_MS: 20000
+      REQUIRE_GENERATIVE: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -60,18 +88,13 @@ jobs:
         run: npm ci
 
       - name: Run comparison
-        if: ${{ env.ANTHROPIC_API_KEY != '' }}
         run: |
           mkdir -p artifacts
           node src/evaluation/compare.js > artifacts/comparison-results.json
 
       - name: Upload comparison results
-        if: ${{ env.ANTHROPIC_API_KEY != '' }}
+        if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
           name: comparison-results
           path: artifacts/comparison-results.json
-
-      - name: Explain skipped comparison
-        if: ${{ env.ANTHROPIC_API_KEY == '' }}
-        run: echo "ANTHROPIC_API_KEY no está configurada; se omitió la comparación generativa."

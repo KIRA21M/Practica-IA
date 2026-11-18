@@ -1,0 +1,201 @@
+message,category
+No puedo iniciar sesión en la plataforma,ACCESS
+No puedo iniciar sesión desde esta mañana,ACCESS
+No puedo iniciar sesión cuando uso el servicio,ACCESS
+No puedo iniciar sesión y necesito ayuda,ACCESS
+No puedo iniciar sesión para mi equipo,ACCESS
+Necesito restablecer mi contraseña en la plataforma,ACCESS
+Necesito restablecer mi contraseña desde esta mañana,ACCESS
+Necesito restablecer mi contraseña cuando uso el servicio,ACCESS
+Necesito restablecer mi contraseña y necesito ayuda,ACCESS
+Necesito restablecer mi contraseña para mi equipo,ACCESS
+Mi cuenta está bloqueada en la plataforma,ACCESS
+Mi cuenta está bloqueada desde esta mañana,ACCESS
+Mi cuenta está bloqueada cuando uso el servicio,ACCESS
+Mi cuenta está bloqueada y necesito ayuda,ACCESS
+Mi cuenta está bloqueada para mi equipo,ACCESS
+No recibo el código de acceso en la plataforma,ACCESS
+No recibo el código de acceso desde esta mañana,ACCESS
+No recibo el código de acceso cuando uso el servicio,ACCESS
+No recibo el código de acceso y necesito ayuda,ACCESS
+No recibo el código de acceso para mi equipo,ACCESS
+Quiero cambiar mi correo de usuario en la plataforma,ACCESS
+Quiero cambiar mi correo de usuario desde esta mañana,ACCESS
+Quiero cambiar mi correo de usuario cuando uso el servicio,ACCESS
+Quiero cambiar mi correo de usuario y necesito ayuda,ACCESS
+Quiero cambiar mi correo de usuario para mi equipo,ACCESS
+No puedo entrar al portal en la plataforma,ACCESS
+No puedo entrar al portal desde esta mañana,ACCESS
+No puedo entrar al portal cuando uso el servicio,ACCESS
+No puedo entrar al portal y necesito ayuda,ACCESS
+No puedo entrar al portal para mi equipo,ACCESS
+Mi sesión se cierra inmediatamente en la plataforma,ACCESS
+Mi sesión se cierra inmediatamente desde esta mañana,ACCESS
+Mi sesión se cierra inmediatamente cuando uso el servicio,ACCESS
+Mi sesión se cierra inmediatamente y necesito ayuda,ACCESS
+Mi sesión se cierra inmediatamente para mi equipo,ACCESS
+Olvidé mis credenciales en la plataforma,ACCESS
+Olvidé mis credenciales desde esta mañana,ACCESS
+Olvidé mis credenciales cuando uso el servicio,ACCESS
+Olvidé mis credenciales y necesito ayuda,ACCESS
+Olvidé mis credenciales para mi equipo,ACCESS
+El sistema rechaza mi usuario en la plataforma,ACCESS
+El sistema rechaza mi usuario desde esta mañana,ACCESS
+El sistema rechaza mi usuario cuando uso el servicio,ACCESS
+El sistema rechaza mi usuario y necesito ayuda,ACCESS
+El sistema rechaza mi usuario para mi equipo,ACCESS
+Necesito recuperar mi cuenta en la plataforma,ACCESS
+Necesito recuperar mi cuenta desde esta mañana,ACCESS
+Necesito recuperar mi cuenta cuando uso el servicio,ACCESS
+Necesito recuperar mi cuenta y necesito ayuda,ACCESS
+Necesito recuperar mi cuenta para mi equipo,ACCESS
+La aplicación se cae al abrir reportes en la plataforma,BUG
+La aplicación se cae al abrir reportes desde esta mañana,BUG
+La aplicación se cae al abrir reportes cuando uso el servicio,BUG
+La aplicación se cae al abrir reportes y necesito ayuda,BUG
+La aplicación se cae al abrir reportes para mi equipo,BUG
+El sistema muestra un error al exportar en la plataforma,BUG
+El sistema muestra un error al exportar desde esta mañana,BUG
+El sistema muestra un error al exportar cuando uso el servicio,BUG
+El sistema muestra un error al exportar y necesito ayuda,BUG
+El sistema muestra un error al exportar para mi equipo,BUG
+La pantalla queda en blanco al guardar en la plataforma,BUG
+La pantalla queda en blanco al guardar desde esta mañana,BUG
+La pantalla queda en blanco al guardar cuando uso el servicio,BUG
+La pantalla queda en blanco al guardar y necesito ayuda,BUG
+La pantalla queda en blanco al guardar para mi equipo,BUG
+El servicio responde con error quinientos en la plataforma,BUG
+El servicio responde con error quinientos desde esta mañana,BUG
+El servicio responde con error quinientos cuando uso el servicio,BUG
+El servicio responde con error quinientos y necesito ayuda,BUG
+El servicio responde con error quinientos para mi equipo,BUG
+El botón de búsqueda no funciona en la plataforma,BUG
+El botón de búsqueda no funciona desde esta mañana,BUG
+El botón de búsqueda no funciona cuando uso el servicio,BUG
+El botón de búsqueda no funciona y necesito ayuda,BUG
+El botón de búsqueda no funciona para mi equipo,BUG
+La información no se actualiza en la plataforma,BUG
+La información no se actualiza desde esta mañana,BUG
+La información no se actualiza cuando uso el servicio,BUG
+La información no se actualiza y necesito ayuda,BUG
+La información no se actualiza para mi equipo,BUG
+El formulario no permite guardar en la plataforma,BUG
+El formulario no permite guardar desde esta mañana,BUG
+El formulario no permite guardar cuando uso el servicio,BUG
+El formulario no permite guardar y necesito ayuda,BUG
+El formulario no permite guardar para mi equipo,BUG
+La aplicación tarda demasiado y falla en la plataforma,BUG
+La aplicación tarda demasiado y falla desde esta mañana,BUG
+La aplicación tarda demasiado y falla cuando uso el servicio,BUG
+La aplicación tarda demasiado y falla y necesito ayuda,BUG
+La aplicación tarda demasiado y falla para mi equipo,BUG
+El reporte descarga datos incorrectos en la plataforma,BUG
+El reporte descarga datos incorrectos desde esta mañana,BUG
+El reporte descarga datos incorrectos cuando uso el servicio,BUG
+El reporte descarga datos incorrectos y necesito ayuda,BUG
+El reporte descarga datos incorrectos para mi equipo,BUG
+La notificación aparece duplicada en la plataforma,BUG
+La notificación aparece duplicada desde esta mañana,BUG
+La notificación aparece duplicada cuando uso el servicio,BUG
+La notificación aparece duplicada y necesito ayuda,BUG
+La notificación aparece duplicada para mi equipo,BUG
+Quiero agregar filtros por fecha en la plataforma,FEATURE
+Quiero agregar filtros por fecha desde esta mañana,FEATURE
+Quiero agregar filtros por fecha cuando uso el servicio,FEATURE
+Quiero agregar filtros por fecha y necesito ayuda,FEATURE
+Quiero agregar filtros por fecha para mi equipo,FEATURE
+Sería útil tener modo oscuro en la plataforma,FEATURE
+Sería útil tener modo oscuro desde esta mañana,FEATURE
+Sería útil tener modo oscuro cuando uso el servicio,FEATURE
+Sería útil tener modo oscuro y necesito ayuda,FEATURE
+Sería útil tener modo oscuro para mi equipo,FEATURE
+Necesitamos exportar a Excel en la plataforma,FEATURE
+Necesitamos exportar a Excel desde esta mañana,FEATURE
+Necesitamos exportar a Excel cuando uso el servicio,FEATURE
+Necesitamos exportar a Excel y necesito ayuda,FEATURE
+Necesitamos exportar a Excel para mi equipo,FEATURE
+Solicito un tablero con nuevos indicadores en la plataforma,FEATURE
+Solicito un tablero con nuevos indicadores desde esta mañana,FEATURE
+Solicito un tablero con nuevos indicadores cuando uso el servicio,FEATURE
+Solicito un tablero con nuevos indicadores y necesito ayuda,FEATURE
+Solicito un tablero con nuevos indicadores para mi equipo,FEATURE
+Quiero recibir alertas por correo en la plataforma,FEATURE
+Quiero recibir alertas por correo desde esta mañana,FEATURE
+Quiero recibir alertas por correo cuando uso el servicio,FEATURE
+Quiero recibir alertas por correo y necesito ayuda,FEATURE
+Quiero recibir alertas por correo para mi equipo,FEATURE
+Me gustaría personalizar el perfil en la plataforma,FEATURE
+Me gustaría personalizar el perfil desde esta mañana,FEATURE
+Me gustaría personalizar el perfil cuando uso el servicio,FEATURE
+Me gustaría personalizar el perfil y necesito ayuda,FEATURE
+Me gustaría personalizar el perfil para mi equipo,FEATURE
+Propongo agregar búsqueda avanzada en la plataforma,FEATURE
+Propongo agregar búsqueda avanzada desde esta mañana,FEATURE
+Propongo agregar búsqueda avanzada cuando uso el servicio,FEATURE
+Propongo agregar búsqueda avanzada y necesito ayuda,FEATURE
+Propongo agregar búsqueda avanzada para mi equipo,FEATURE
+Necesitamos permisos por departamento en la plataforma,FEATURE
+Necesitamos permisos por departamento desde esta mañana,FEATURE
+Necesitamos permisos por departamento cuando uso el servicio,FEATURE
+Necesitamos permisos por departamento y necesito ayuda,FEATURE
+Necesitamos permisos por departamento para mi equipo,FEATURE
+Sería bueno contar con una vista móvil en la plataforma,FEATURE
+Sería bueno contar con una vista móvil desde esta mañana,FEATURE
+Sería bueno contar con una vista móvil cuando uso el servicio,FEATURE
+Sería bueno contar con una vista móvil y necesito ayuda,FEATURE
+Sería bueno contar con una vista móvil para mi equipo,FEATURE
+Solicito integración con calendario en la plataforma,FEATURE
+Solicito integración con calendario desde esta mañana,FEATURE
+Solicito integración con calendario cuando uso el servicio,FEATURE
+Solicito integración con calendario y necesito ayuda,FEATURE
+Solicito integración con calendario para mi equipo,FEATURE
+Detectamos un token expuesto en producción en la plataforma,SECURITY
+Detectamos un token expuesto en producción desde esta mañana,SECURITY
+Detectamos un token expuesto en producción cuando uso el servicio,SECURITY
+Detectamos un token expuesto en producción y necesito ayuda,SECURITY
+Detectamos un token expuesto en producción para mi equipo,SECURITY
+Recibí un correo de phishing en la plataforma,SECURITY
+Recibí un correo de phishing desde esta mañana,SECURITY
+Recibí un correo de phishing cuando uso el servicio,SECURITY
+Recibí un correo de phishing y necesito ayuda,SECURITY
+Recibí un correo de phishing para mi equipo,SECURITY
+Alguien entró a mi cuenta sin autorización en la plataforma,SECURITY
+Alguien entró a mi cuenta sin autorización desde esta mañana,SECURITY
+Alguien entró a mi cuenta sin autorización cuando uso el servicio,SECURITY
+Alguien entró a mi cuenta sin autorización y necesito ayuda,SECURITY
+Alguien entró a mi cuenta sin autorización para mi equipo,SECURITY
+Encontramos una vulnerabilidad en el sistema en la plataforma,SECURITY
+Encontramos una vulnerabilidad en el sistema desde esta mañana,SECURITY
+Encontramos una vulnerabilidad en el sistema cuando uso el servicio,SECURITY
+Encontramos una vulnerabilidad en el sistema y necesito ayuda,SECURITY
+Encontramos una vulnerabilidad en el sistema para mi equipo,SECURITY
+Se filtraron credenciales de un usuario en la plataforma,SECURITY
+Se filtraron credenciales de un usuario desde esta mañana,SECURITY
+Se filtraron credenciales de un usuario cuando uso el servicio,SECURITY
+Se filtraron credenciales de un usuario y necesito ayuda,SECURITY
+Se filtraron credenciales de un usuario para mi equipo,SECURITY
+Detectamos actividad sospechosa en la red en la plataforma,SECURITY
+Detectamos actividad sospechosa en la red desde esta mañana,SECURITY
+Detectamos actividad sospechosa en la red cuando uso el servicio,SECURITY
+Detectamos actividad sospechosa en la red y necesito ayuda,SECURITY
+Detectamos actividad sospechosa en la red para mi equipo,SECURITY
+Un atacante intentó acceder al servidor en la plataforma,SECURITY
+Un atacante intentó acceder al servidor desde esta mañana,SECURITY
+Un atacante intentó acceder al servidor cuando uso el servicio,SECURITY
+Un atacante intentó acceder al servidor y necesito ayuda,SECURITY
+Un atacante intentó acceder al servidor para mi equipo,SECURITY
+Hay un archivo malicioso en el equipo en la plataforma,SECURITY
+Hay un archivo malicioso en el equipo desde esta mañana,SECURITY
+Hay un archivo malicioso en el equipo cuando uso el servicio,SECURITY
+Hay un archivo malicioso en el equipo y necesito ayuda,SECURITY
+Hay un archivo malicioso en el equipo para mi equipo,SECURITY
+Se expuso información sensible en la plataforma,SECURITY
+Se expuso información sensible desde esta mañana,SECURITY
+Se expuso información sensible cuando uso el servicio,SECURITY
+Se expuso información sensible y necesito ayuda,SECURITY
+Se expuso información sensible para mi equipo,SECURITY
+Reporto un posible robo de datos en la plataforma,SECURITY
+Reporto un posible robo de datos desde esta mañana,SECURITY
+Reporto un posible robo de datos cuando uso el servicio,SECURITY
+Reporto un posible robo de datos y necesito ayuda,SECURITY
+Reporto un posible robo de datos para mi equipo,SECURITY
