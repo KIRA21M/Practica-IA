@@ -19,6 +19,7 @@ src/
   http/                   Servidor HTTP y endpoint
 test/                     Pruebas unitarias mínimas
 src/evaluation/           Casos de referencia y comparación de motores
+ml-service/               Microservicio Python de clasificación TF-IDF + Logistic Regression
 ```
 
 ## Ejecución
@@ -84,3 +85,7 @@ Las solicitudes de seguridad siempre se devuelven con `requiresHumanReview: true
 `npm run compare` ejecuta 10 casos de referencia contra el motor tradicional. Si `ANTHROPIC_API_KEY` está configurada, ejecuta los mismos casos contra Claude y calcula formato válido, exactitud de categoría y exactitud conjunta de categoría y prioridad. Sin credencial, el bloque generativo se marca como omitido sin simular resultados.
 
 La validación de GitHub Actions exige la credencial para considerar completa la comparación generativa. La checklist de entregables y la evidencia registrada se encuentran en [`docs/DELIVERY_CHECKLIST.md`](docs/DELIVERY_CHECKLIST.md).
+
+## Microservicio de clasificación ML
+
+El proyecto también incluye [`ml-service/`](ml-service/), un microservicio Python que conserva el pipeline solicitado: `TfidfVectorizer(ngram_range=(1, 2))` y `LogisticRegression(max_iter=1000)`. Su documentación de instalación, ejecución y endpoints está en [`ml-service/README.md`](ml-service/README.md).
