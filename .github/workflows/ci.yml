@@ -66,7 +66,7 @@ jobs:
           node src/evaluation/compare.js > artifacts/comparison-results.json
 
       - name: Upload comparison results
-        if: ${{ success() }}
+        if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
           name: comparison-results
