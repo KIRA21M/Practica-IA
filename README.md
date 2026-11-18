@@ -82,3 +82,5 @@ Las solicitudes de seguridad siempre se devuelven con `requiresHumanReview: true
 ## Primera evaluación MVP
 
 `npm run compare` ejecuta 10 casos de referencia contra el motor tradicional. Si `ANTHROPIC_API_KEY` está configurada, ejecuta los mismos casos contra Claude y calcula formato válido, exactitud de categoría y exactitud conjunta de categoría y prioridad. Sin credencial, el bloque generativo se marca como omitido sin simular resultados.
+
+La validación de GitHub Actions exige la credencial para considerar completa la comparación generativa. La checklist de entregables y la evidencia registrada se encuentran en [`docs/DELIVERY_CHECKLIST.md`](docs/DELIVERY_CHECKLIST.md).

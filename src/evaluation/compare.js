@@ -45,6 +45,9 @@ async function run() {
     }
   } else {
     const variable = config.aiProvider === 'anthropic' ? 'ANTHROPIC_API_KEY' : 'OPENAI_API_KEY';
+    if (process.env.REQUIRE_GENERATIVE === 'true') {
+      throw new Error(`${variable} no configurada; no se puede completar la comparación generativa.`);
+    }
     generative.push(...referenceCases.map((expected) => ({ ...expected, status: 'skipped', error: `${variable} no configurada` })));
   }
 
