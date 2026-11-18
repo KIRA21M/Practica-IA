@@ -95,7 +95,7 @@ Las solicitudes de seguridad siempre se devuelven con `requiresHumanReview: true
 
 `npm run compare` ejecuta 10 casos de referencia contra el motor tradicional. Si `ANTHROPIC_API_KEY` está configurada, ejecuta los mismos casos contra Claude y calcula formato válido, exactitud de categoría y exactitud conjunta de categoría y prioridad. Sin credencial, el bloque generativo se marca como omitido sin simular resultados.
 
-La comparación generativa cloud de GitHub Actions es opcional y se activa con la variable de repositorio `RUN_CLOUD_COMPARISON=true`. El CI base valida Node y el microservicio ML sin depender de saldo externo. La checklist de entregables y la evidencia registrada se encuentran en [`docs/DELIVERY_CHECKLIST.md`](docs/DELIVERY_CHECKLIST.md).
+GitHub Actions valida Node, el microservicio ML y la comparación generativa usando Ollama local, sin depender de saldo externo. Claude queda disponible como proveedor cloud opcional. La checklist de entregables y la evidencia registrada se encuentran en [`docs/DELIVERY_CHECKLIST.md`](docs/DELIVERY_CHECKLIST.md).
 
 ## Microservicio de clasificación ML
 
