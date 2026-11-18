@@ -42,8 +42,16 @@ export async function analyzeGenerative(message) {
       }
     );
     if (!response.ok) {
-      await response.text();
-      const error = new Error(`${isAnthropic ? 'Anthropic' : 'OpenAI'} respondió con estado ${response.status}.`);
+      const providerBody = await response.text();
+      let detail = '';
+      try {
+        const parsed = JSON.parse(providerBody);
+        detail = parsed.error?.message || parsed.message || '';
+      } catch {
+        detail = '';
+      }
+      const suffix = detail ? ` Detalle: ${detail.slice(0, 300)}` : '';
+      const error = new Error(`${isAnthropic ? 'Anthropic' : 'OpenAI'} respondió con estado ${response.status}.${suffix}`);
       error.statusCode = 502;
       throw error;
     }
