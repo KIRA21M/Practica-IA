@@ -64,7 +64,7 @@ jobs:
     # Repository secrets are unavailable to pull requests from forks. Keep
     # the generative gate strict for internal branches while allowing tests
     # from external contributors to run without exposing the API key.
-    if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
+    if: ${{ vars.RUN_CLOUD_COMPARISON == 'true' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
     needs: tests
     runs-on: ubuntu-latest
     env:

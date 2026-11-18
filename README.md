@@ -34,13 +34,24 @@ npm run compare
 npm start
 ```
 
-El modo `traditional` funciona sin credenciales. Para `generative`, configura `ANTHROPIC_API_KEY` en `.env`; no se simulan respuestas generativas.
+El modo `traditional` funciona sin credenciales. Para `generative`, puedes usar Ollama local sin API key o Anthropic configurando `ANTHROPIC_API_KEY`; no se simulan respuestas generativas.
+
+### Proveedor generativo gratuito con Ollama
+
+Instala Ollama, descarga un modelo y deja el servidor local activo:
+
+```powershell
+ollama pull gemma3:4b
+ollama serve
+```
+
+El `.env.example` ya usa `AI_PROVIDER=ollama`, `OLLAMA_MODEL=gemma3:4b` y `OLLAMA_BASE_URL=http://127.0.0.1:11434/v1`. Después ejecuta `npm start` y usa el modo `generative`. Ollama procesa las solicitudes localmente, por lo que no requiere saldo ni API key.
 
 ## Configuración segura de la API key
 
 La clave nunca debe escribirse en el código, en `README.md` ni en un commit. El MVP usa Claude por defecto mediante la API de Anthropic.
 
-Para ejecución local:
+Para ejecución local con Anthropic:
 
 ```powershell
 Copy-Item .env.example .env
@@ -84,7 +95,7 @@ Las solicitudes de seguridad siempre se devuelven con `requiresHumanReview: true
 
 `npm run compare` ejecuta 10 casos de referencia contra el motor tradicional. Si `ANTHROPIC_API_KEY` está configurada, ejecuta los mismos casos contra Claude y calcula formato válido, exactitud de categoría y exactitud conjunta de categoría y prioridad. Sin credencial, el bloque generativo se marca como omitido sin simular resultados.
 
-La validación de GitHub Actions exige la credencial para considerar completa la comparación generativa. La checklist de entregables y la evidencia registrada se encuentran en [`docs/DELIVERY_CHECKLIST.md`](docs/DELIVERY_CHECKLIST.md).
+La comparación generativa cloud de GitHub Actions es opcional y se activa con la variable de repositorio `RUN_CLOUD_COMPARISON=true`. El CI base valida Node y el microservicio ML sin depender de saldo externo. La checklist de entregables y la evidencia registrada se encuentran en [`docs/DELIVERY_CHECKLIST.md`](docs/DELIVERY_CHECKLIST.md).
 
 ## Microservicio de clasificación ML
 
