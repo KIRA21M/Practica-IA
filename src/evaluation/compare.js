@@ -51,6 +51,11 @@ async function run() {
     generative.push(...referenceCases.map((expected) => ({ ...expected, status: 'skipped', error: `${variable} no configurada` })));
   }
 
+  const generativeSummary = summarize(generative);
+  if (process.env.REQUIRE_GENERATIVE === 'true' && generativeSummary.completed !== referenceCases.length) {
+    throw new Error(`La comparación generativa quedó incompleta: ${generativeSummary.completed}/${referenceCases.length} casos completados.`);
+  }
+
   console.log(JSON.stringify({
     generatedAt: new Date().toISOString(),
     referenceCount: referenceCases.length,
