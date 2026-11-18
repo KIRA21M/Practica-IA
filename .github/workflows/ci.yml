@@ -64,14 +64,13 @@ jobs:
     # Repository secrets are unavailable to pull requests from forks. Keep
     # the generative gate strict for internal branches while allowing tests
     # from external contributors to run without exposing the API key.
-    if: ${{ vars.RUN_CLOUD_COMPARISON == 'true' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
+    if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
     needs: tests
     runs-on: ubuntu-latest
     env:
-      AI_PROVIDER: anthropic
-      ANTHROPIC_API_KEY: ${{ secrets.API }}
-      ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL || 'claude-sonnet-4-5-20250929' }}
-      ANTHROPIC_BASE_URL: ${{ vars.ANTHROPIC_BASE_URL || 'https://api.anthropic.com/v1' }}
+      AI_PROVIDER: ollama
+      OLLAMA_MODEL: gemma3:1b
+      OLLAMA_BASE_URL: http://127.0.0.1:11434/v1
       GENERATION_TIMEOUT_MS: 20000
       REQUIRE_GENERATIVE: true
     steps:
@@ -86,6 +85,24 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Install Ollama
+        run: curl -fsSL https://ollama.com/install.sh | sh
+
+      - name: Start Ollama
+        run: |
+          ollama serve > "$RUNNER_TEMP/ollama.log" 2>&1 &
+          for attempt in {1..30}; do
+            if curl --silent --fail http://127.0.0.1:11434/api/tags > /dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          cat "$RUNNER_TEMP/ollama.log"
+          exit 1
+
+      - name: Download local model
+        run: ollama pull gemma3:1b
 
       - name: Run comparison
         run: |

@@ -10,7 +10,7 @@
 | Validación y manejo de errores | Completo | `src/application/validateRequest.js`, `test/http.test.js` |
 | Casos comparativos | Completo | `src/evaluation/referenceCases.js` |
 | Comparación tradicional | Verificada | 10/10 casos, formato y clasificación correctos |
-| Comparación generativa cloud | Opcional | Requiere `RUN_CLOUD_COMPARISON=true` y el secreto `API` |
+| Comparación generativa local | Completo | Ollama en CI con `gemma3:1b` y 10 casos |
 | Clasificador ML local | Completo | `ml-service/`, 200 registros y endpoint `/predict` |
 | README de ejecución | Completo | `README.md` |
 | CI y auditoría | Completo | `.github/workflows/ci.yml` |
@@ -19,13 +19,13 @@
 
 La última ejecución publicada en `Practica-IA` confirmó los tests, la sintaxis y la auditoría. El motor tradicional procesó 10 casos con 100% de formato válido, 100% de categoría correcta y 100% de resultado conjunto correcto.
 
-La comparación cloud mostró `generative.completed = 0` porque la cuenta de Anthropic no tenía crédito. El CI base ya no depende de ese servicio: valida Node y el microservicio ML. La integración generativa real sigue disponible con Claude u Ollama local.
+La comparación generativa local se ejecuta en CI con Ollama y no requiere API key ni saldo. La integración con Claude sigue disponible como proveedor cloud opcional.
 
 Ejecución de referencia: [GitHub Actions](https://github.com/KIRA21M/Practica-IA/actions/runs/43329796651).
 
 ## Criterio de cierre
 
-Para ejecutar la comparación cloud, configura `RUN_CLOUD_COMPARISON=true` como Repository variable y `API` como Repository secret. Para trabajar sin costo, instala Ollama y usa el modo generativo local documentado en `README.md`.
+Para trabajar localmente sin costo, instala Ollama, ejecuta `ollama pull gemma3:4b` y deja activo `ollama serve`, como se documenta en `README.md`.
 
 ## Conclusión técnica
 
