@@ -18,6 +18,8 @@ Para ejecutar exactamente el entrenamiento solicitado y mostrar el reporte:
 python train.py
 ```
 
+El script también imprime la matriz de confusión y calcula el score aproximado para `Encontré datos de otros clientes`.
+
 ## Endpoints
 
 - `GET /health`: estado, dataset y categorías cargadas.

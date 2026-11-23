@@ -60,6 +60,7 @@ jobs:
           python -m py_compile app.py
           python -m py_compile train.py
           python -c "from app import data, model; assert len(data) == 200; assert model.predict(['Alguien entró a mi cuenta sin autorización'])[0] == 'SECURITY'"
+          python -c "import subprocess; output = subprocess.check_output(['python', 'train.py'], text=True); assert 'Matriz de confusión:' in output; assert 'Categoría:' in output; assert 'Score aproximado:' in output"
 
   generative-comparison:
     name: Generative comparison
