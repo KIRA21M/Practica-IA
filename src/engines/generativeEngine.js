@@ -41,13 +41,13 @@ export async function analyzeGenerative(message, attempt = 0) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), config.generationTimeoutMs);
   try {
-    const baseUrl = isAnthropic ? config.anthropicBaseUrl : isOllama ? config.ollamaBaseUrl : config.openAiBaseUrl;
+    const baseUrl = (isAnthropic ? config.anthropicBaseUrl : isOllama ? config.ollamaBaseUrl : config.openAiBaseUrl).replace(/\/+$/, '');
     const providerName = isAnthropic ? 'Anthropic' : isOllama ? 'Ollama' : 'OpenAI';
     const systemPrompt = attempt > 0
       ? `${SYSTEM_PROMPT}\nThis is a strict retry. Output only the requested JSON object, with no markdown or commentary.`
       : SYSTEM_PROMPT;
     const response = await fetch(
-      isAnthropic ? `${baseUrl}/messages` : isOllama ? `${baseUrl.replace(/\/v1\/?$/, '')}/api/chat` : `${baseUrl}/chat/completions`,
+      isAnthropic ? `${baseUrl}/messages` : isOllama ? `${baseUrl.replace(/\/v1$/, '')}/api/chat` : `${baseUrl}/chat/completions`,
       {
         method: 'POST',
         signal: controller.signal,
@@ -82,6 +82,9 @@ export async function analyzeGenerative(message, attempt = 0) {
         ? payload.message?.content
         : payload.choices?.[0]?.message?.content;
     const parsed = JSON.parse(content);
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      throw Object.assign(new Error('El proveedor generativo devolvió un objeto JSON inválido.'), { statusCode: 502 });
+    }
     const normalizedCategory = typeof parsed.category === 'string' ? parsed.category.trim().toUpperCase() : parsed.category;
     const normalizedPriority = typeof parsed.priority === 'string' ? parsed.priority.trim().toUpperCase() : parsed.priority;
     const result = {

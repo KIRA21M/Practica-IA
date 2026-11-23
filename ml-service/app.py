@@ -27,9 +27,16 @@ def load_dataset():
     required_columns = {"message", "category"}
     if not required_columns.issubset(data.columns):
         raise RuntimeError("tickets.csv debe contener las columnas message y category")
-    data = data.dropna(subset=["message", "category"])
+    data = data.dropna(subset=["message", "category"]).copy()
+    data["message"] = data["message"].astype(str).str.strip()
+    data["category"] = data["category"].astype(str).str.strip().str.upper()
+    data = data[(data["message"] != "") & (data["category"] != "")]
     if data["category"].nunique() < 2:
         raise RuntimeError("El dataset debe contener al menos dos categorías")
+    if data["category"].value_counts().min() < 2:
+        raise RuntimeError("Cada categoría debe tener al menos dos registros para usar stratify")
+    if len(data) < 10:
+        raise RuntimeError("El dataset debe contener al menos 10 registros válidos")
     return data
 
 
@@ -84,7 +91,6 @@ def predict(request: PredictionRequest):
 
     category = model.predict([message])[0]
     probabilities = model.predict_proba([message])[0]
-    classes = model.named_steps["classifier"].classes_
     confidence = float(max(probabilities))
 
     return {
