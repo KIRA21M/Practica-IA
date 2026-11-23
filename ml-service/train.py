@@ -3,7 +3,7 @@ from pathlib import Path
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 
@@ -28,4 +28,14 @@ model.fit(X_train, y_train)
 predictions = model.predict(X_test)
 
 print(classification_report(y_test, predictions, zero_division=0))
-print(model.predict(["Alguien entró a mi cuenta sin autorización"])[0])
+
+classes = model.named_steps["classifier"].classes_
+print("Matriz de confusión:")
+print(confusion_matrix(y_test, predictions, labels=classes))
+
+new_message = ["Encontré datos de otros clientes"]
+category = model.predict(new_message)[0]
+confidence = model.predict_proba(new_message).max()
+
+print("Categoría:", category)
+print("Score aproximado:", round(float(confidence), 3))
