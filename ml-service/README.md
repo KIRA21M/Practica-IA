@@ -12,6 +12,12 @@ pip install -r requirements.txt
 uvicorn app:app --reload --port 8000
 ```
 
+Para ejecutar exactamente el entrenamiento solicitado y mostrar el reporte:
+
+```powershell
+python train.py
+```
+
 ## Endpoints
 
 - `GET /health`: estado, dataset y categorías cargadas.
