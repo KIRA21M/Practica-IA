@@ -56,7 +56,9 @@ jobs:
 
       - name: Validate training and prediction
         run: |
+          python train.py
           python -m py_compile app.py
+          python -m py_compile train.py
           python -c "from app import data, model; assert len(data) == 200; assert model.predict(['Alguien entró a mi cuenta sin autorización'])[0] == 'SECURITY'"
 
   generative-comparison:
