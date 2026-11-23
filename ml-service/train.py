@@ -10,6 +10,9 @@ from sklearn.pipeline import Pipeline
 
 DATASET_PATH = Path(__file__).resolve().parent / "tickets.csv"
 data = pd.read_csv(DATASET_PATH)
+data = data.dropna(subset=["message", "category"]).copy()
+data["message"] = data["message"].astype(str).str.strip()
+data["category"] = data["category"].astype(str).str.strip().str.upper()
 
 X_train, X_test, y_train, y_test = train_test_split(
     data["message"],
